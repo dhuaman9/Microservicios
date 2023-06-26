@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    hikari:
+      minimumIdle: 20
+      maximumPoolSize: 500
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
+      auto-commit: false 
+    url: jdbc:mysql://127.0.0.1:3306/ms365_usuario?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+
+    

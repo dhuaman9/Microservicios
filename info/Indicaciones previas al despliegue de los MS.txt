@@ -1,0 +1,42 @@
+**Instalar los siguientes programas:
+
+	-Java 8 o superior: Configurar luego su variable de entorno, si usa S.O window
+	-Maven: Configurar luego su variable de entorno, si usa S.O window
+	-IDE STS o eclipse JEE de la pagina oficial
+	-Git(incluya git bash)
+	-Wampserver : https://www.wampserver.com/en/download-wampserver-64bits/
+	-PostgreSQL version 12: Se sugiere instalar en otra PC o laptop: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+	-Navicat: Se sugiere instalar en otra PC o laptop
+	-Visual studio code: Se sugiere instalar en otra PC o laptop, descargar dela pag. oficial.
+	-NodeJS y Angular: Instalarlos en la otra PC o laptop, donde se consumira los microservicios  y usara el aplicativo en angular.
+	-Postman: Para probar los servicios Rest.
+
+**Importar las bases de datos: Se debe descargar los SQLs del github
+	URL: https://github.com/dhuaman9/Microservicios
+
+	BD USUARIOS - MYSQL V5.7 EN LA PC ESCRITORIO (Por ejemplo en una i7 con 8 o mas nucleos del cpu).
+	Descargar el SQL del github
+
+	BD PROYECTOS - POSTGRESQL V12 . EN LA LAPTOP I5  - Importar el SQL  de preferencia en Navicat
+
+
+**Configurar el usuario root en phpmyadmin, como se indicó en el video
+
+**Asignar IPs estaticas en las PCs, por ejemplo:
+
+MAQUINA ESCRITORIO (PRINCIPAL)
+	Habilitado para DHCP: No
+	Dirección IPv4: 192.168.1.8
+	Máscara de subred IPv4: 255.255.255.0
+	Puerta de enlace predeterminada IPv4: 192.168.1.1
+	Servidores DNS IPv4: 200.48.225.130, 200.48.225.146
+
+MAQUINA LAPTOP I5 
+	Habilitado para DHCP: No
+	Dirección IPv4: 192.168.1.9
+	Máscara de subred IPv4: 255.255.255.0
+	Puerta de enlace predeterminada IPv4: 192.168.1.1
+	Servidores DNS IPv4: 200.48.225.130, 200.48.225.146
+
+-- Luego desactivar el Firewall de la PC principal, donde se ubique el zuul server,eureka,etc.
+
