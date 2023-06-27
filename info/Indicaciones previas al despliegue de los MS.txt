@@ -38,5 +38,13 @@ MAQUINA LAPTOP I5
 	Puerta de enlace predeterminada IPv4: 192.168.1.1
 	Servidores DNS IPv4: 200.48.225.130, 200.48.225.146
 
--- Luego desactivar el Firewall de la PC principal, donde se ubique el zuul server,eureka,etc.
+** Luego desactivar el Firewall de la PC principal, donde se ubique el zuul server,eureka,etc.
+
+** Agregar IPs  en archivo HOST :
+
+Colocar las 2 IPs estaticas; tanto de la PC principal como la secundaria, en el archivo Host de la PC principal, como por ejemplo:
+El archivo host esta en: C:\Windows\System32\drivers\etc
+
+192.168.1.8 DESKTOP-BARAL0D
+192.168.1.9 DESKTOP-VLDA5PF
 
