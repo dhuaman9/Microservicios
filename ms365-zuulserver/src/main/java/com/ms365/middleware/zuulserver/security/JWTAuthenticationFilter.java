@@ -25,18 +25,21 @@ import com.ms365.middleware.zuulserver.common.constants.Constants;
 import com.ms365.middleware.zuulserver.common.constants.Constants.Security;
 import com.ms365.middleware.zuulserver.utilities.DateUtil;
 
+
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
   private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
   private AuthenticationManager authenticationManager;
 
   public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+	  logger.info(" debug class JWTAuthenticationFilter >  ");//debug
     this.authenticationManager = authenticationManager;
     super.setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
   }
 
   @Override
   public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+	  logger.info(" debug Authentication  attemptAuthentication >  ");//debug
     logger.info(Constants.Logger.Method.INITIALIZE);
     logger.info("----------------------------------------------------------------------");
 
@@ -57,6 +60,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     logger.info(" > ContentLength : " + request.getContentLength());
 
     try {
+    	
+    	 
       String authContent = IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8);
       logger.info(" > Content       : " + authContent);
 
@@ -87,8 +92,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                           HttpServletResponse response,
                                           FilterChain chain,
                                           Authentication auth) throws IOException, ServletException {
+	  logger.info(" debug successfulAuthentication() >  ");//debug
+	  
     logger.info(Constants.Logger.Method.INITIALIZE);
 
+    logger.info(" debug Security.Token.EXPIRATION_TIME() >  ", Security.Token.EXPIRATION_TIME);//debug
+    
     Date expiration = new Date(System.currentTimeMillis() + Security.Token.EXPIRATION_TIME * 1000);
     String token = TokenProvider.generateToken(auth, expiration);
 

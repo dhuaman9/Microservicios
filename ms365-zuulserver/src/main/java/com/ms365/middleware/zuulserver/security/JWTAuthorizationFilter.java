@@ -42,7 +42,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
   @Override
   @Transactional(Transactional.TxType.REQUIRES_NEW)
   protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
-    logger.info(Constants.Logger.Method.INITIALIZE);
+   
+	  logger.info("debug JWTAuthorizationFilter - doFilterInternal() >  ");//debug
     logger.info("----------------------------------------------------------------------");
 
     logger.info(" > HTTP Method : " + req.getMethod());
@@ -62,6 +63,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     String authorizationHeader = req.getHeader(Security.Headers.AUTHORIZATION);
     logger.info(" > token header: " + authorizationHeader);
 
+    logger.info("debug Security.Token.BEARER_PREFIX ->  ",Security.Token.BEARER_PREFIX);//debug
+    logger.info("debug  authorizationHeader.startsWith(Security.Token.BEARER_PREFIX) ->  ",authorizationHeader.startsWith(Security.Token.BEARER_PREFIX));//debug
+   
     if (authorizationHeader == null || !authorizationHeader.startsWith(Security.Token.BEARER_PREFIX)) {
       //chain.doFilter(req, res);
       //res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

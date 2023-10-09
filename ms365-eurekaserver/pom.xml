@@ -13,9 +13,9 @@
 	</parent>
 
 	<groupId>com.ms365</groupId>
-	<artifactId>ms365-eurekaserver</artifactId>
+	<artifactId>ms-eurekaserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms365-eurekaserver</name>
+	<name>ms-eurekaserver</name>
 	<description>Spring Cloud Eureka-Server</description>
 
 	<properties>

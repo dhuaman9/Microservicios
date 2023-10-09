@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+//debug
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +25,7 @@ import com.ms365.middleware.zuulserver.filters.ErrorFilter;
 import com.ms365.middleware.zuulserver.filters.PostFilter;
 import com.ms365.middleware.zuulserver.filters.PreFilter;
 import com.ms365.middleware.zuulserver.filters.RouteFilter;
+import com.ms365.middleware.zuulserver.service.AuthenticatorService;
 
 @SpringBootApplication
 @Configuration
@@ -30,23 +35,31 @@ import com.ms365.middleware.zuulserver.filters.RouteFilter;
 @EnableDiscoveryClient
 @EnableZuulProxy
 public class ZuulServerApplication {
+	
+	
+  private static Logger logger = LoggerFactory.getLogger(AuthenticatorService.class);  //debug
+	 
   @Bean
   public PreFilter preFilter() {
+	  logger.info(" debug zuul > entrando al prefilter ");//debug
     return new PreFilter();
   }
 
   @Bean
   public PostFilter postFilter() {
+	  logger.info(" debug zuul > entrando al postfilter ");//debug
     return new PostFilter();
   }
 
   @Bean
   public ErrorFilter errorFilter() {
+	  logger.info(" debug zuul > entrando al errorfilter ");//debug
     return new ErrorFilter();
   }
 
   @Bean
   public RouteFilter routeFilter() {
+	  logger.info(" debug zuul > entrando al routeFilter ");//debug
     return new RouteFilter();
   }
 

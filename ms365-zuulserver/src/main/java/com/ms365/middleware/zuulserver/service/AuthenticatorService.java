@@ -38,11 +38,11 @@ public class AuthenticatorService implements UserDetailsService {
   @Override
   @Transactional(Transactional.TxType.REQUIRES_NEW)
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	  logger.info("debug >  UserDetails loadUserByUsername()");//debug
     UsuarioDTO usuarioDTO = null;
 
-    logger.info(" > Trying to authenticate to {}", username);
+      logger.info(" > Trying to authenticate to {}", username);
 
-    // if (username.matches("^\\d{1,}$")) {
     // logger.info("  > Trying findById");
       logger.info("  > Trying findByUserName");
       try {
@@ -53,7 +53,7 @@ public class AuthenticatorService implements UserDetailsService {
       catch(Exception ex) {
         throw new UsernameNotFoundException(ex.getMessage(), ex);
       }
-    //}
+    
 
     if (usuarioDTO == null) {
       logger.info(" > NOT FOUND");
@@ -75,6 +75,7 @@ public class AuthenticatorService implements UserDetailsService {
   private Collection<? extends GrantedAuthority> getGrantedAuthorities(UsuarioDTO usuarioDTO) {
     List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 
+	  logger.info(" >  debug Collection getGrantedAuthorities()");//debug
     logger.info(" > Role {}", usuarioDTO.getRole().getAuth());
 
     list.add(new GrantedAuthority() {

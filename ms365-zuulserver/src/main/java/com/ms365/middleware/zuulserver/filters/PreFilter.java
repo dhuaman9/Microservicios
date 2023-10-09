@@ -43,6 +43,12 @@ public class PreFilter extends ZuulFilter {
   @Override
   public boolean shouldFilter() {
     RequestContext ctx = RequestContext.getCurrentContext();
+    
+    //debug
+    logger.info(" debug PreFilter  > method shouldFilter ");
+    logger.info(" debug > ctx.containsKey(FilterConstants.FORWARD_TO_KEY) :  ", ctx.containsKey(FilterConstants.FORWARD_TO_KEY));
+    logger.info(" debug > ctx.containsKey(FilterConstants.FORWARD_TO_KEY) :  ", ctx.containsKey(FilterConstants.SERVICE_ID_KEY));
+    
     return !ctx.containsKey(FilterConstants.FORWARD_TO_KEY) && // a filter has already forwarded
            !ctx.containsKey(FilterConstants.SERVICE_ID_KEY);   // a filter has already determined serviceId
   }
@@ -60,7 +66,14 @@ public class PreFilter extends ZuulFilter {
     logger.info("  > Request URI : " + request.getRequestURI().toString());
 
     String requestURI = this.urlPathHelper.getPathWithinApplication(ctx.getRequest());
+    
+    logger.info(" debug metod run  > String requestURI) :  ", requestURI); //debug
+    
+    
     Route route = routeLocator.getMatchingRoute(requestURI);
+    
+    logger.info("debug metod run  > route) :  ", route); //debug
+    
     if (route != null) {
       logger.info(" > Route: " + route.getId());
       logger.info("  > Prefix     : " + route.getPrefix());

@@ -12,9 +12,9 @@
 	</parent>
 
 	<groupId>com.ms365</groupId>
-	<artifactId>ms365-configserver</artifactId>
+	<artifactId>ms-configserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms365-configserver</name>
+	<name>ms-configserver</name>
 	<description>Spring Cloud Config-Server</description>
 
 	<properties>
@@ -26,8 +26,7 @@
 
     <runtime.env.name>DEFINE_MAVEN_PROFILE</runtime.env.name>
     <runtime.env.profile>DEFINE_MAVEN_PROFILE</runtime.env.profile>
-   <!--  <runtime.env.folder.config>file:///D:/WORKSPACE-MICROS-DOCKER/ms365-configserver/cloud-config</runtime.env.folder.config>-->
-	</properties>
+   </properties>
 
   <profiles>
     <!--  <profile>

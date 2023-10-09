@@ -12,9 +12,9 @@
 	</parent>
 
 	<groupId>com.ms365</groupId>
-	<artifactId>ms365-adminserver</artifactId>
+	<artifactId>ms-adminserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms365-adminserver</name>
+	<name>ms-adminserver</name>
 	<description>Spring Cloud Admin-Server</description>
 
   <properties>
