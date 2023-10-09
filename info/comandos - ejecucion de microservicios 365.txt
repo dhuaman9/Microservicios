@@ -1,66 +1,75 @@
-***crear archivos compilados
+Configurcion Eureka
+  https://programmerclick.com/article/6144446153/
 
-->CONFIG SERVER
+
+MySQL
+-- crear base de datos ms365_usuario
+
+PostgreSQL
+-- crear base de datos ms365
+   -- crear esquema ms_proyecto
+
+**Servidores
+  -- Config server
+
+crear el jar:
 mvn clean package
 
--> EUREKA y ZUUL
-mvn clean package -Druntime.env.hosts.config=192.168.1.8 -Druntime.env.hosts.eureka=192.168.1.8
- EUREKA: http://127.0.0.1:10401/ms365/eurekaserver/
- 
--> ADMIN SERVER
-mvn clean package -Druntime.env.hosts.config=192.168.1.8
-
-http://127.0.0.1:10403/login
-
-
-****comandos de java para ejecutar los jars.
-
-Se debe ejecutar en el siguiente orden:
+ejecutar el ms:
 java -jar target/ms365-configserver-0.0.1-SNAPSHOT.jar
 
-java -jar target/ms365-eurekaserver-0.0.1-SNAPSHOT.jar
+  -- Eureka y Zuul server
+     -- http://127.0.0.1:10401/ms365/eurekaserver/
+     -- mvn clean package -Druntime.env.hosts.config=192.168.1.8 -Druntime.env.hosts.eureka=192.168.1.8
 
-java -jar target/ms365-adminserver-0.0.1-SNAPSHOT.jar (opcional)
-
-java -jar target/ms365-zuulserver-0.0.1-SNAPSHOT.jar
-
-Posteriormente ejecutar  los microservicios de consumo, en cualquier oden, se sugiere por ejemplo:
-
-java -jar target/ms365-usuarios-0.0.1-SNAPSHOT.jar
-
-java -jar target/ms365-proyectos-0.0.1-SNAPSHOT.jar
-
-java -jar target/ms365-proyectos-archivos-0.0.1-SNAPSHOT.jar
+  -- Admin server
+     -- http://127.0.0.1:10403/login
+     -- mvn clean package  -Druntime.env.hosts.eureka=192.168.1.8
 
 
-***Creacion  de varias instancias de los microservicios: Usuarios, Proyectos y archivos
+**comandos para ejecutar servicios en la terminal o CMD
 
--> MSusuarios la 2da , 3era y 4ta  instancia:
+java -jar target/ms-configserver-0.0.1-SNAPSHOT.jar
 
-2da instancia:
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10411 --management.server.port=20411 --spring.cloud.config.uri=http://192.168.1.7:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
+java -jar target/ms-eurekaserver-0.0.1-SNAPSHOT.jar
 
-3era instancia:
+java -jar target/ms-adminserver-0.0.1-SNAPSHOT.jar
+
+java -jar target/ms-zuulserver-0.0.1-SNAPSHOT.jar
+
+--  como primera instancia:
+
+java -jar target/usuario-service-0.0.1-SNAPSHOT.jar
+
+java -jar target/proyecto-service-0.0.1-SNAPSHOT.jar
+
+java -jar target/archivosProyecto-service-0.0.1-SNAPSHOT.jar
+
+
+  ***ejecutar varias instancias: 
+
+
+****usuarios la 2da , 3era y 4ta  instancia:
+
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10411 --management.server.port=20411 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
+
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10412 --management.server.port=20412 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
 
-4ta instancia:
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10413 --management.server.port=20413 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
 
 ----
 
--> MSproyectos: la 2da y 3era instancia:
+-proyectos: la 2da y 3era instancia:
 
-2da instancia:
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10421 --management.server.port=20421 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
 
-3era instancia:
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10422 --management.server.port=20422 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
 
-4ta instancia:
+
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10423 --management.server.port=20423 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
 
 
--> MS archivos de proyectos 
+- MS archivos de proyectos 
 
 la 2da instancia:
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10431 --management.server.port=20431 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
@@ -70,7 +79,6 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10432 --managemen
 
 la 4ta  instancia:
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=10433 --management.server.port=20433 --spring.cloud.config.uri=http://192.168.1.8:10400/ms365/configserver --eureka.client.serviceUrl.defaultZone=http://192.168.1.8:10401/ms365/eurekaserver/eureka"
-
 
 
 
